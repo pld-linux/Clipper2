@@ -1,23 +1,32 @@
 Summary:	A Polygon Clipping and Offsetting library
+Summary(pl.UTF-8):	Biblioteka do przycinania i przesunięć wielokątów
 Name:		Clipper2
 Version:	1.4.0
-Release:	1
-License:	BSL-1.0
+Release:	2
+License:	BSL v1.0
 Group:		Libraries
+#Source0Download: https://github.com/AngusJohnson/Clipper2/releases
 Source0:	https://github.com/AngusJohnson/Clipper2/archive/Clipper2_%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	8105133391d1a163f19bcc8225990817
 URL:		https://github.com/AngusJohnson/Clipper2/
-BuildRequires:	cmake
+BuildRequires:	cmake >= 3.15
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	gtest-devel
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
+A Polygon Clipping and Offsetting library.
+
+%description -l pl.UTF-8
+Biblioteka do przycinania i przesunięć wielokątów.
 
 %package devel
 Summary:	Header files for %{name} library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Header files for %{name} library.
@@ -29,15 +38,12 @@ Pliki nagłówkowe biblioteki %{name}.
 %setup -q -n %{name}-%{name}_%{version}
 
 %build
-mkdir -p build
-cd build
-%cmake ../CPP \
+%cmake -B build -S CPP \
 	-DCLIPPER2_UTILS=OFF \
 	-DCLIPPER2_EXAMPLES=OFF \
-	-DUSE_EXTERNAL_GTEST=ON \
-	-DBUILD_SHARED_LIBS=ON
+	-DUSE_EXTERNAL_GTEST=ON
 
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
