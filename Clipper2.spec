@@ -1,13 +1,13 @@
 Summary:	A Polygon Clipping and Offsetting library
 Summary(pl.UTF-8):	Biblioteka do przycinania i przesunięć wielokątów
 Name:		Clipper2
-Version:	1.4.0
-Release:	2
+Version:	2.0.1
+Release:	1
 License:	BSL v1.0
 Group:		Libraries
 #Source0Download: https://github.com/AngusJohnson/Clipper2/releases
 Source0:	https://github.com/AngusJohnson/Clipper2/archive/Clipper2_%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8105133391d1a163f19bcc8225990817
+# Source0-md5:	23d91877f9497f191ee9d4512a2a56ac
 URL:		https://github.com/AngusJohnson/Clipper2/
 BuildRequires:	cmake >= 3.15
 BuildRequires:	libstdc++-devel >= 6:7
@@ -62,15 +62,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE README.md
-%attr(755,root,root) %{_libdir}/libClipper2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libClipper2.so.1
-%attr(755,root,root) %{_libdir}/libClipper2Z.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libClipper2Z.so.1
+%{_libdir}/libClipper2.so.*.*.*
+%ghost %{_libdir}/libClipper2.so.2
+%{_libdir}/libClipper2Z.so.*.*.*
+%ghost %{_libdir}/libClipper2Z.so.2
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libClipper2.so
-%attr(755,root,root) %{_libdir}/libClipper2Z.so
+%{_libdir}/libClipper2.so
+%{_libdir}/libClipper2Z.so
 %{_includedir}/clipper2
 %{_libdir}/cmake/clipper2
 %{_pkgconfigdir}/Clipper2.pc
